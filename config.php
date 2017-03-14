@@ -9,6 +9,7 @@ $arc_config = array(
   'db_user' => 'root',
   'db_pwd' => '',
   'db_name' => 'ontranetbd',
+  
 
   /* ARC2 store settings */
   'store_name' => 'sandbox',
