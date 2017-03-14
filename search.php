@@ -2,8 +2,11 @@
 <html lang="en" >
 
 <head>
+  <link rel="icon"
+      type="image/png"
+      href="favicon.ico">
     <meta charset="utf-8">
-    <title>OnTraNetBD</title>
+    <title>RestaNet</title>
     <!--<link rel="stylesheet" type="text/css" href="style.css">-->
     <link rel="stylesheet" type="text/css" href="jquery-ui.css">
     <script src="jquery-1.11.0.min.js"></script>
@@ -62,7 +65,7 @@
         overflow-x: hidden;
     }
     .list-group-item {
-        cursor: pointer;    
+        cursor: pointer;
     }
     .list-group-item:hover {
         background-color: #ddd;
@@ -73,15 +76,15 @@
     }
     .container {
         width: 80%;
-        
+
     }
     .contents {
         /*margin: 60px 0 0 0;*/
         overflow: hidden;
-    } 
+    }
     .concepts {
         font-size: 15px;
-    }  
+    }
     #result {
         padding-top: 15px;
     }
@@ -94,7 +97,7 @@
             <div class="cover-container">
                 <div class="clearfix">
                     <div class="inner">
-                        <h3 class="masthead-brand">OnTraNetBD</h3>
+                        <h3 class="masthead-brand">RestaNet</h3>
                         <nav>
                             <ul class="nav masthead-nav">
                                 <li><a href="home.php">Home</a></li>
@@ -107,10 +110,10 @@
                 <!--<div class="navbar navbar-default">
                     <div class = "navbar-header">
                         <a class = "navbar-brand" href = "home.php">OnTraNetBD <span class="label label-primary">Travel Ontology of Bangladesh</span></a>
-                    </div>            
+                    </div>
                 </div>-->
                 <div style='margin-top: 0px;'>
-                    <div class="inner cover col-sm-8">    
+                    <div class="inner cover col-sm-8">
                         <div class="">
                             <div class="col-sm-12">
                                 <div class="input-group">
@@ -123,23 +126,23 @@
 
                             <!--<form method="post">
                                 <div class="form-group"></div>
-                                
+
                             </form>
                              <div class="panel panel-primary">...</div> -->
                             <br>
                             <div id="result" ></div>
 
-                        </div>                    
+                        </div>
                     </div>
                     <div class="inner cover col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Travel Atrractions</h3>
+                                <h3 class="panel-title">Restaurant Type</h3>
                             </div>
-                            <div class="panel-body"> 
+                            <div class="panel-body">
                                 <?php
                                     //include_once( "sparql.php" );
-                                    $leaves = getLeafConcepts( "Travel Attraction" );
+                                    $leaves = getLeafConcepts( "Restaurant Type" );
                                     //for($i = 0; $i < $allLabels['count']; $i++) {
                                         //if( $i > 0 ) echo ',';
                                         //echo $allLabels['result'][$i]['label'].'<br>';
@@ -161,6 +164,6 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
 </body>
 </html>

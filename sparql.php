@@ -1,14 +1,14 @@
 <?php
 
 $store = "";
-$prefix = "	
+$prefix = "
 	PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 	PREFIX owl: <http://www.w3.org/2002/07/owl#>
 	PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 	PREFIX  ontra: <http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#>
 ";
 
-function initializeStore() {	
+function initializeStore() {
 	include( "arc/ARC2.php" );
 	include( "config.php" );
 	$st = ARC2::getStore( $arc_config );
@@ -57,17 +57,17 @@ function isIndividualOrClass( $key, $load ) {
 function getTypeOfIndividual( $key ) {
 	//initializeStore();
 	$query = $GLOBALS['prefix'] . '
-		SELECT DISTINCT ?typeLabel ?subLabel 
-		WHERE {  
-			?x rdfs:label "' . $key . '" .  
-			?type rdfs:label ?typeLabel . 
-			?x rdf:type ?type . 
-			OPTIONAL { 
-				?x rdf:type ?sub . 
-				?sub rdfs:subClassOf ?type . 
+		SELECT DISTINCT ?typeLabel ?subLabel
+		WHERE {
+			?x rdfs:label "' . $key . '" .
+			?type rdfs:label ?typeLabel .
+			?x rdf:type ?type .
+			OPTIONAL {
+				?x rdf:type ?sub .
+				?sub rdfs:subClassOf ?type .
 				?sub rdfs:label ?subLabel .
-				FILTER( ?sub != ?type ) 
-			} 
+				FILTER( ?sub != ?type )
+			}
 		}
 	';
 	$result = $GLOBALS['store']->query( $query, 'rows' );
@@ -110,11 +110,11 @@ function getTypeOfIndividual( $key ) {
 function getAllMembers( $key ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?member
-		WHERE { 
+		WHERE {
 			?mem rdfs:label ?member .
 		  	?cls rdfs:label "' . $key . '" .
 		  	?mem rdf:type ?cls
-		} 
+		}
 	';
 	$result = $GLOBALS['store']->query( $query, 'rows' );
 	//echo "<br>" . $query . "<br>";
@@ -132,8 +132,8 @@ function getAllMembers( $key ) {
 function getDistrict( $area ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?d
-		WHERE { 
-		  ?x rdfs:label ?d .  
+		WHERE {
+		  ?x rdfs:label ?d .
 		  ?y rdfs:label "' . $area . '" .
 		  ?y ontra:isPartOf ?x
 		}
@@ -150,8 +150,8 @@ function getDistrict( $area ) {
 function getSpotsInArea( $area ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?spot
-		WHERE { 
-		  ?ts rdfs:label ?spot .  
+		WHERE {
+		  ?ts rdfs:label ?spot .
 		  ?ts rdf:type ?cls .
 		  ?cls rdfs:label "Travel Attraction" .
 		  ?ts ontra:isLocatedAt ?d .
@@ -164,13 +164,13 @@ function getSpotsInArea( $area ) {
 		$res = array(
 			'count'		=>		count( $result ),
 			'result'	=>		$result
-		);			
+		);
 	}
 	else {
 		$res = array(
 			'count'		=>		count( $result ),
 			'result'	=>		$result
-		); 			
+		);
 	}
 	return $res;
 }
@@ -178,8 +178,8 @@ function getSpotsInArea( $area ) {
 function getSpotsInDistrict( $dist ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?spot
-		WHERE { 
-		  ?ts rdfs:label ?spot .  
+		WHERE {
+		  ?ts rdfs:label ?spot .
 		  ?ts rdf:type ?cls .
 		  ?cls rdfs:label "Travel Attraction" .
 		  ?ts ontra:isLocatedAt ?ar .
@@ -193,7 +193,7 @@ function getSpotsInDistrict( $dist ) {
 		$res = array(
 			'count'		=>		count( $result ),
 			'result'	=>		$result
-		); 
+		);
 	}
 	else {
 		$res = getSpotsInArea( $dist );
@@ -204,11 +204,11 @@ function getSpotsInDistrict( $dist ) {
 function getLocation( $spot ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?loc
-		WHERE { 
+		WHERE {
 		  ?ts rdfs:label "'.$spot.'" .
 		  ?ts ontra:isLocatedAt ?ar .
 		  ?ar rdfs:label ?loc
-		}  
+		}
 	';
 	$result = $GLOBALS['store']->query( $query, 'rows' );
 	if( $result ) {
@@ -225,12 +225,12 @@ function getLocation( $spot ) {
 function getSpotsOfType( $key, $type ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?otsp
-		WHERE { 
+		WHERE {
 		  ?ots rdfs:label ?otsp .
 		  ?ots rdf:type ?ar .
 		  ?ar rdfs:label "'.$type.'" .
 		  FILTER( "'.$key.'" != ?otsp )
-		} 
+		}
 	';
 	$result = $GLOBALS['store']->query( $query, 'rows' );
 	//print "<pre>";  print_r($result);
@@ -249,11 +249,39 @@ function getSpotsOfType( $key, $type ) {
 	return $res;
 }
 
+function getFacilities( $facilities ) {
+	$query = $GLOBALS['prefix'] . '
+		SELECT DISTINCT ?restaurant
+		WHERE {
+		  ?ts rdfs:label ?restaurant .
+		  ?ts rdf:type ?cls .
+		  ?cls rdfs:label "Restaurant" .
+		  ?ts ontra:hasFacilities ?d .
+		  ?d rdfs:label "'.$facilities.'"
+		}
+	';
+	$result = $GLOBALS['store']->query( $query, 'rows' );
+	//print "<pre>";  print_r($result);
+	if( $result ) {
+		$res = array(
+			'count'		=>		count( $result ),
+			'result'	=>		$result
+		);
+	}
+	else {
+		$res = array(
+			'count'		=>		count( $result ),
+			'result'	=>		$result
+		);
+	}
+	return $res;
+}
+
 function getAllLabels() {
 	//initializeStore();
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?label
-		WHERE { 
+		WHERE {
 		  ?sub rdfs:label ?label
 		}
 	';
@@ -263,13 +291,13 @@ function getAllLabels() {
 		$res = array(
 			'count'		=>		count( $result ),
 			'result'	=>		$result
-		); 
+		);
 	}
 	else {
 		$res = array(
 			'count'		=>		count( $result ),
 			'result'	=>		$result
-		); 
+		);
 	}
 	return $res;
 }
@@ -277,7 +305,7 @@ function getAllLabels() {
 function getLeafConcepts( $label ) {
 	$query = $GLOBALS['prefix'] . '
 		SELECT DISTINCT ?label
-		WHERE { 
+		WHERE {
 		  	?sub rdfs:label ?label .
 		  	?sub rdfs:subClassOf ?super .
 	   		?super rdfs:label "'.$label.'"
@@ -294,5 +322,5 @@ function getLeafConcepts( $label ) {
 	}
 	else {
 		return false;
-	}	
+	}
 }

@@ -5,11 +5,11 @@ if( isset( $_POST["key"] ) ) {
 	$key = trim( $_POST["key"] );
 	if( $key == "" ) {
 		echo '<div class="alert alert-warning" role="alert">' . 'Please enter something to search.' . '</div>';
-		//echo "Please enter something to search.";	
+		//echo "Please enter something to search.";
 	}
 	else {
 		$result = isIndividualOrClass( $key, true );
-		if( $result["verdict"] ) {			
+		if( $result["verdict"] ) {
 			if( $result["verdict"] == 1 ) { //if key is a named individual
 				$types = getTypeOfIndividual( $key );
 				foreach( $types as $type ) {
@@ -59,11 +59,11 @@ if( isset( $_POST["key"] ) ) {
 						//}
 						$loc = getLocation( $key );
 						if( checkVowel( $type[0] ) ) $art = 'An';
-						else $art = 'A'; 
+						else $art = 'A';
 
 						$strArea = '<div class="well"><span class="label label-success">';
 						$strArea = $strArea . $art . ' ' . $type . '</span>';
-						$strArea = $strArea . '<br><small>' . "Location: " . $loc . '</small>';	
+						//$strArea = $strArea . '<br><small>' . "Location: " . $loc . '</small>';	
 						echo $strArea . '</div>';
 
 						//echo "Activities: " . '<br>';
@@ -71,7 +71,7 @@ if( isset( $_POST["key"] ) ) {
 						$others = getSpotsOfType( $key, $type );
 						//print "<pre>";  print_r($others);
 						if( $others['count'] > 0 ) {
-							echo "<span style='color: #fff;'>Similar tourist spot(s) in Bangladesh:</span>";
+							echo "<span style='color: #fff;'>Similar Restaurants in Bangladesh:</span>";
 							echo "<ul class='list-group'>";
 							foreach ($others['result'] as $other) {
 								if( $other['otsp'] != $key )
@@ -79,7 +79,7 @@ if( isset( $_POST["key"] ) ) {
 							}
 							echo "</ul>";
 						}
-						
+
 					}
 					echo "<hr>";
 				}
@@ -88,7 +88,7 @@ if( isset( $_POST["key"] ) ) {
 				if( checkVowel( $result["message"][0] ) ) $aAn = "an";
 				else $aAn = "a";
 				//echo '"' . $key . '" is ' . $aAn . ' ' . $result["message"] . ".<br>";
-				$members = getAllMembers( $key ); 
+				$members = getAllMembers( $key );
 				$cntM = count( $members );
 				if( $cntM == 0 || $cntM == 1 || ( $cntM == 1 && $members == "Not Found" ) ) {
 					$aux = "is";
@@ -97,7 +97,7 @@ if( isset( $_POST["key"] ) ) {
 				else {
 					$aux = "are";
 					$entry = "entries";
-				}				
+				}
 				if( $members != "Not Found" ) {
 					echo "<div class='alert alert-success' role='alert'>" . "There ".$aux." "."<span class='badge'>".count($members)."</span>"." tourist ".$entry." as ".$key.".</div>";
 					/*print "<pre>";
@@ -116,8 +116,8 @@ if( isset( $_POST["key"] ) ) {
 		}
 		else {
 			echo $result["message"];
-		}		
-	}	
+		}
+	}
 }
 else {
 	echo '<div class="alert alert-warning" role="alert">' . 'Nothing has been searched' . '</div>';

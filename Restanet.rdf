@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/safwan/ontologies/2017/2/13/untitled-ontology-21#"
-     xml:base="http://www.semanticweb.org/safwan/ontologies/2017/2/13/untitled-ontology-21"
+<rdf:RDF xmlns="http://www.semanticweb.org/safwan/ontologies/2017/2/15/untitled-ontology-24#"
+     xml:base="http://www.semanticweb.org/safwan/ontologies/2017/2/15/untitled-ontology-24"
      xmlns:OnTraNetBD="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -8,7 +8,7 @@
      xmlns:untitled-ontology-8="http://www.semanticweb.org/root/ontologies/2014/7/untitled-ontology-8#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/safwan/ontologies/2017/2/13/untitled-ontology-21">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/safwan/ontologies/2017/2/15/untitled-ontology-24">
         <untitled-ontology-8:dateTime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">22 August 2014 03:09 AM</untitled-ontology-8:dateTime>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An Ontology for Travel Network in Bangladesh</rdfs:comment>
         <untitled-ontology-8:revision rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</untitled-ontology-8:revision>
@@ -502,6 +502,7 @@ Syed Safwan</untitled-ontology-8:creator>
 
     <owl:Class rdf:about="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Dining_Option">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Restaurant"/>
+        <rdfs:label>Dining Option</rdfs:label>
     </owl:Class>
     
 
@@ -545,6 +546,7 @@ Syed Safwan</untitled-ontology-8:creator>
 
     <owl:Class rdf:about="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Facilities">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Restaurant"/>
+        <rdfs:label>Facilities</rdfs:label>
     </owl:Class>
     
 
@@ -577,7 +579,9 @@ Syed Safwan</untitled-ontology-8:creator>
 
     <!-- http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Food -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Food"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Food">
+        <rdfs:label>Food</rdfs:label>
+    </owl:Class>
     
 
 
@@ -944,6 +948,7 @@ Syed Safwan</untitled-ontology-8:creator>
 
     <owl:Class rdf:about="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Restaurant">
         <rdfs:comment>a building where people go to eat.</rdfs:comment>
+        <rdfs:label>Restaurant</rdfs:label>
     </owl:Class>
     
 
@@ -953,6 +958,7 @@ Syed Safwan</untitled-ontology-8:creator>
     <owl:Class rdf:about="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Restaurant_Type">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/root/ontologies/2014/7/OnTraNetBD#Restaurant"/>
         <rdfs:comment>A perticular catagory which defines a restaurant.</rdfs:comment>
+        <rdfs:label>Restaurant Type</rdfs:label>
     </owl:Class>
     
 

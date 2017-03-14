@@ -168,7 +168,7 @@
 							//print "<pre>";  print_r($others);
 							$retn['similar'] = array();
 							if( $others['count'] > 0 ) {
-								//echo "<br>Similar tourist spot(s) in Bangladesh:";
+								//echo "<br>Similar Restaurants in Bangladesh:";
 								//echo "<ul class='list-group'>";
 								foreach ($others['result'] as $other) {
 									if( $other['otsp'] != $key ) {
